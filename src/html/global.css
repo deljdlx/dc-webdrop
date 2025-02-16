@@ -1,0 +1,193 @@
+@font-face{
+    font-family : "fancy";
+    src : url('resource/CaviarDreams_Bold.ttf');
+}
+
+:root {
+	--offsetTop: 1%;
+	--default-color: #ccc;
+	--default-color-text: #4F3626;
+}
+
+/* reset */
+
+h1, h2, h3, h4, h5, h6, p, ul, ol, li, figure, figcaption, blockquote, dl, dd {
+	margin: 0;
+	padding: 0;
+}
+
+
+
+html, body {
+	margin:0;
+	left:0;
+	font-family : "fancy";
+	width:100vw;
+	height:100vh;
+	background-color:#eee;
+	box-sizing: border-box;
+	color:var(--default-color-text);
+	/* overflow-x:hidden; */
+	/* overflow:hidden; */
+}
+
+h1 {
+	position: absolute;
+	text-align:center;
+	width:100%;
+	top:var(--offsetTop);
+	font-family: fancy;
+	font-weight: bold;
+	font-size: 1.2rem;
+	border: solid 1px var(--default-color-text);
+	background-color: #fff8;
+}
+
+
+/* =============================================== */
+
+main {
+	position: absolute;
+	left: 0;
+	top: 0;
+	width:100vw;
+	height: 100vh;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-content: flex-start;
+	z-index: 10;
+}
+
+
+/* =============================================== */
+
+
+.background {
+	position: absolute;
+	left:0;
+	bottom:0;
+	height:100vh;
+	width:100vw;
+	box-sizing: border-box;
+	overflow:hidden;
+}
+
+
+
+.circle {
+	border: solid 1px var(--default-color);
+	border-radius:100%;
+	position: absolute;
+	left:50%;
+	top: 100%;
+}
+
+
+.scanner {
+	position: absolute;
+	height:100%;
+	left:50%;
+	width:1px;
+	background-color:#000;
+	top:0;
+}
+
+
+.scanner {
+	transform-origin: 0 100%;
+	animation-name:rotation;
+	animation-duration:6s;
+	animation-iteration-count:infinite;
+	animation-timing-function:linear;
+}
+
+
+@keyframes rotation{
+	from {transform:rotate(0deg);} to {transform:rotate(360deg);}
+}
+
+/* =============================================== */
+
+#userInfo {
+	position: absolute;
+	top: calc(var(--offsetTop) + 60px);
+	left:0;
+	text-align: center;
+	width: 100%;
+	z-index:100;
+}
+
+#userName {
+	width: 200px;
+	z-index:100;
+	border : solid 3px var(--default-color);
+	border-radius: 20px;
+	padding: 10px;
+}
+
+/* =============================================== */
+
+.userListContainer {
+	position: absolute;
+	top: calc(var(--offsetTop) + 130px);
+	left:0;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.userListContainer p {
+	margin: 0;
+	text-align: center;
+	font-size: 0.7rem;
+	font-style: italic;
+}
+
+.userListContainer h2 {
+	text-align: center;
+	font-size: 1.2rem;
+}
+
+.userList {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 1rem;
+	justify-content: center;
+	/* border: solid 20px #f0f; */
+
+	}
+
+	.webDropUser {
+		position: relative;
+		width:100px;
+		height: 100px;
+		background-color:var(--default-color);
+		border-radius:100%;
+		border: solid 1px #666;
+		display: inline-block;
+		margin: 10px;
+		background-image: url(avatar.png);
+		background-position: 50% 0;
+		background-size: 100%;
+		background-repeat: no-repeat;
+	}
+
+	.webDropUser:hover {
+	background-color:#FFC;
+	}
+
+	.webDropUser .userName {
+		position: absolute;
+		top: 100%;
+		width: 100%;
+		text-align: center;
+		font-size: 1rem;
+		font-family: fancy;
+	}
+
+
+
+

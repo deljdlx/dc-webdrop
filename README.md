@@ -1,5 +1,3 @@
-# Generators
+# Webdrop
 
-Dummy data generators for api testing.
-All cors requests are allowed.
-# dc-webdrop
+Open url, share url, drop a file on the user avatar. That's it 🚀.

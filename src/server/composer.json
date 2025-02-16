@@ -1,0 +1,15 @@
+{
+    "require": {
+        "react/http": "^1.11",
+        "react/socket": "^1.16",
+        "react/event-loop": "^1.5",
+        "cboden/ratchet": "^0.4.4",
+        "symfony/var-dumper": "^7.2"
+    },
+    "autoload": {
+        "psr-4": {
+            "WebDrop\\": "src/"
+        }
+    }
+
+}

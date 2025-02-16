@@ -1,0 +1,50 @@
+services:
+  webdrop:
+    build: .
+    restart: always
+    env_file:
+      - .env
+
+    volumes:
+      - "./src:/var/www"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+      - "traefik.http.routers.webdrop.rule=Host(\"${DOMAIN}\")"
+      - "traefik.http.routers.webdrop.entrypoints=websecure"
+      - "traefik.http.routers.webdrop.tls.certresolver=myresolver"
+    networks:
+      web:
+      global:
+
+
+
+  webdrop-ws:
+    build: .
+    restart: always
+    env_file:
+      - .env
+
+    volumes:
+      - "./src:/var/www"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.docker.network=web"
+
+      - "traefik.http.routers.webdrop-ws.rule=Host(`wss.${DOMAIN}`)"
+      - "traefik.http.routers.webdrop-ws.entrypoints=wss"
+      - "traefik.http.routers.webdrop-ws.tls.certresolver=myresolver"
+      - "traefik.http.services.webdrop-ws.loadbalancer.server.port=8443"
+      # useless, but kept for reference (https://community.traefik.io/t/how-to-make-websockets-work-with-traefik-2-0-setting-up-rancher/1732)
+      # - "traefik.http.middlewares.sslheader.headers.customrequestheaders.X-Forwarded-Proto = https"
+
+    networks:
+      web:
+      global:
+networks:
+  web:
+    name: web
+    external: true
+  global:
+    name: global
+    external: true
