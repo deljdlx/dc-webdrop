@@ -1,12 +1,14 @@
 services:
   webdrop:
-    build: .
+    container_name: webdrop-front
+    # build: .
+    image: tangramor/nginx-php8-fpm:latest
     restart: always
     env_file:
       - .env
 
     volumes:
-      - "./src:/var/www"
+      - "./src/front:/var/www/html"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"
@@ -20,13 +22,14 @@ services:
 
 
   webdrop-ws:
-    build: .
+    container_name: webdrop-ws
+    build: docker/websocket-server
     restart: always
     env_file:
       - .env
 
     volumes:
-      - "./src:/var/www"
+      - "./src:/app"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"

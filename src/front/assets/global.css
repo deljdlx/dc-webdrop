@@ -1,6 +1,6 @@
 @font-face{
     font-family : "fancy";
-    src : url('resource/CaviarDreams_Bold.ttf');
+    src : url('./fonts/CaviarDreams_Bold.ttf');
 }
 
 :root {

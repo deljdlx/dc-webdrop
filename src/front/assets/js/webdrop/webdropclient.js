@@ -1,6 +1,5 @@
 class WebDropClient
 {
-
 	client;
 	connectionId;
 
@@ -37,7 +36,6 @@ class WebDropClient
 			}
 		});
 
-
 		this.client.on('disconnect', (payload) => {
 			const userContainer = document.querySelector('*[data-id="'+payload.data.id+'"]');
 			if (userContainer) {
@@ -45,35 +43,38 @@ class WebDropClient
 			}
 		});
 
-
 		this.client.on('userList', (data) => {
-			var container=jQuery('.userList');
-			var userlist=data.data;
-			console.log('%cwebdropclient.js :: 23 =============================', 'color: #f00; font-size: 1rem');
-			console.log(data.data);
-
-			for(var i=0; i<userlist.length; i++) {
-				if(userlist[i].id==this.connectionId) {
-					continue;
-				}
-
-				let userContainer = document.querySelector('*[data-id="'+userlist[i].id+'"]');
-
-				if(!userContainer) {
-					userContainer=document.createElement('div');
-					var user = new WebDropUser(client, userlist[i].id);
-					var element = user.getElement();
-					userContainer.appendChild(element);
-					container.append(userContainer);
-					user.setUserName(userlist[i].data.userName);
-				}
-			}
+			this.handleUserList(data);
 		});
 
 		this.client.on('downloadFile', function(data) {
-			var iframe=document.getElementById('download');
-			iframe.src=data.data.file
+			var iframe = document.getElementById('download');
+			iframe.src = data.data.file
 		});
+	}
+
+	handleUserList(data) {
+		const container = document.querySelector('.userList');
+		const  userlist=data.data;
+		console.log('%cwebdropclient.js :: 23 =============================', 'color: #f00; font-size: 1rem');
+		console.log(data.data);
+
+		for(var i=0; i<userlist.length; i++) {
+			if(userlist[i].id == this.connectionId) {
+				continue;
+			}
+
+			let userContainer = document.querySelector('*[data-id="'+userlist[i].id+'"]');
+
+			if(!userContainer) {
+				userContainer = document.createElement('div');
+				var user = new WebDropUser(client, userlist[i].id);
+				var element = user.getElement();
+				userContainer.appendChild(element);
+				container.appendChild(userContainer);
+				user.setUserName(userlist[i].data.userName);
+			}
+		}
 	}
 
 
@@ -98,16 +99,11 @@ class WebDropClient
 	}
 
 	connect(url) {
-		var self=this;
-		jQuery.ajax({
-			url: url,
-			success: function(data) {
-				self.client.setURL('wss://'+data.host+':'+data.port+'/'+data.serviceName);
-				self.client.connect();
-			}
+		fetch(url).then((response) => {
+			return response.json();
+		}).then((data) => {
+			this.client.setURL('wss://'+data.host+':'+data.port+'/'+data.serviceName);
+			this.client.connect();
 		});
 	}
 }
-
-
-

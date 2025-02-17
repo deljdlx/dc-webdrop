@@ -1,10 +1,8 @@
 <?php
 
 if(isset($_GET['getServiceInfo'])) {
-	include(__DIR__.'/../configuration.php');
-
+	include(__DIR__.'/configuration.php');
 	header('Content-type: application/json');
-
 	echo json_encode(array(
 		'host'=> $host,
 		'port'=> $port,
@@ -13,15 +11,13 @@ if(isset($_GET['getServiceInfo'])) {
 
 	exit();
 }
-
 ?>
-
 <!doctype html>
 <html>
-<head>
-<title>Webdrop</title>
-<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
-<link rel="stylesheet" href="global.css"></link>
+	<head>
+	<title>Webdrop</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
+	<link rel="stylesheet" href="assets/global.css"></link>
 
 
 </head>
@@ -54,13 +50,13 @@ if(isset($_GET['getServiceInfo'])) {
 <iframe id="download" style="display:none"></iframe>
 
 <script src="https://code.jquery.com/jquery-2.1.0.min.js"></script>
-<script src="./gc_socket/websocket/client.js"></script>
-<script src="./gc_socket/websocket/message.js"></script>
+<script src="assets/js/gc_socket/websocket/client.js"></script>
+<script src="assets/js/gc_socket/websocket/message.js"></script>
 
 
-<script src="webdrop/webdropclient.js"></script>
-<script src="webdrop/webdropuser.js"></script>
-<script src="webdrop/webdropuploader.js"></script>
+<script src="assets/js/webdrop/webdropclient.js"></script>
+<script src="assets/js/webdrop/webdropuser.js"></script>
+<script src="assets/js/webdrop/webdropuploader.js"></script>
 
 <script>
 
