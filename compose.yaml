@@ -40,7 +40,6 @@ services:
 
     networks:
       web:
-      global:
 networks:
   web:
     name: web
