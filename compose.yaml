@@ -17,9 +17,6 @@ services:
       - "traefik.http.routers.webdrop.tls.certresolver=myresolver"
     networks:
       web:
-      global:
-
-
 
   webdrop-ws:
     container_name: webdrop-ws
@@ -49,5 +46,4 @@ networks:
     name: web
     external: true
   global:
-    name: global
     external: true
