@@ -9,6 +9,7 @@ services:
 
     volumes:
       - "./src/front:/var/www/html"
+      - "./src/uploads:/uploads"
     labels:
       - "traefik.enable=true"
       - "traefik.docker.network=web"

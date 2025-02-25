@@ -1,13 +1,11 @@
 <?php
-
-
 $fileId=preg_replace('`\W`', '', $_GET['fileId']);
 
-if(!is_dir(realpath(__DIR__.'/../uploads'))) {
-	mkdir(realpath(__DIR__.'/../uploads'));
+if(!is_dir(realpath('/uploads'))) {
+	mkdir(realpath('/uploads'));
 }
 
-$filepath=realpath(__DIR__.'/../uploads').'/'.$fileId;
+$filepath = realpath('/uploads').'/'.$fileId;
 
 
 if(is_file($filepath.'/meta.json') && is_file($filepath.'/file.data')) {

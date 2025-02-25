@@ -48,6 +48,8 @@ class WebDropClient
 		});
 
 		this.client.on('downloadFile', function(data) {
+			console.log('%cwebdropclient.js :: 51 =============================', 'color: #f00; font-size: 1rem');
+			console.log(data);
 			var iframe = document.getElementById('download');
 			iframe.src = data.data.file
 		});

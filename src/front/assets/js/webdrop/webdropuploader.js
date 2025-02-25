@@ -1,10 +1,11 @@
 class WebDropFileUpload {
 
+	client = null;
 
 	constructor(client, file, clientId) {
 		this.client=client;
 		this.reader = new FileReader();
-		this.xhr=new XMLHttpRequest();
+		this.xhr = new XMLHttpRequest();
 		this.file=file;
 
 		this.clientId=clientId;
@@ -19,7 +20,12 @@ class WebDropFileUpload {
 
 
 		this.xhr.addEventListener("load", function(e) {
-			self.client.send('fileUploaded', {
+
+			console.log('%cwebdropuploader.js :: 11 =============================', 'color: #f00; font-size: 1rem');
+			console.log(self.client);
+			console.log(self.xhr.responseText);
+
+			self.client.client.send('fileUploaded', {
 				fileData: JSON.parse(self.xhr.responseText),
 				userId:self.clientId
 			});
