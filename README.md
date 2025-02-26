@@ -1,7 +1,7 @@
 # 🛜 Webdrop – Airdrop, but for the Web
 
 <!--<SHORT-PRESENTATION>-->
-Open a URL, share a URL, drag & drop a file onto a user avatar. **That’s it.** 🚀
+Open the URL, share it, drag & drop a file onto an user avatar. **That’s it.** 🚀
 A simple and instant way to transfer files, directly in your browser.
 
 No apps. No setup. Just **pure JavaScript + WebSockets + PHP (Ratchet).**
