@@ -10,8 +10,6 @@ class WebDropClient
 		const userNameInput = document.querySelector('#userName');
 
 		this.client.on('connect', (payload) => {
-			console.log('%cwebdropclient.js :: 14 =============================', 'color: #f00; font-size: 1rem');
-			console.log("Connected");
 			this.connectionId=payload.data.id;
 			const userName = this.generateFakeUserNames();
 			userNameInput.value = userName;
@@ -50,16 +48,14 @@ class WebDropClient
 		this.client.on('downloadFile', function(data) {
 			console.log('%cwebdropclient.js :: 51 =============================', 'color: #f00; font-size: 1rem');
 			console.log(data);
-			var iframe = document.getElementById('download');
+			const iframe = document.getElementById('download');
 			iframe.src = data.data.file
 		});
 	}
 
 	handleUserList(data) {
 		const container = document.querySelector('.userList');
-		const  userlist=data.data;
-		console.log('%cwebdropclient.js :: 23 =============================', 'color: #f00; font-size: 1rem');
-		console.log(data.data);
+		const userlist=data.data;
 
 		for(var i=0; i<userlist.length; i++) {
 			if(userlist[i].id == this.connectionId) {
@@ -70,11 +66,13 @@ class WebDropClient
 
 			if(!userContainer) {
 				userContainer = document.createElement('div');
-				var user = new WebDropUser(client, userlist[i].id);
-				var element = user.getElement();
-				userContainer.appendChild(element);
-				container.appendChild(userContainer);
-				user.setUserName(userlist[i].data.userName);
+				const user = new WebDropUser(client, userlist[i].id);
+				const element = user.getElement();
+				if(element) {
+					userContainer.appendChild(element);
+					container.appendChild(userContainer);
+					user.setUserName(userlist[i].data.userName);
+				}
 			}
 		}
 	}

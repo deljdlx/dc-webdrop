@@ -17,8 +17,19 @@ WebDropUser.prototype.getElement=function() {
 		this.element.addEventListener("dragenter", this.dragEnter, false);
 		this.element.addEventListener("dragover", this.dragOver, false);
 		this.element.addEventListener("drop", this.drop, false);
-
 		this.element.innerHTML='<span class="userName"></span>';
+
+		this.element.addEventListener('click', (e) => {
+			const fileInput = document.querySelector('#fileInput');
+
+			if(!fileInput.initialized) {
+				fileInput.addEventListener('change', (e) => {
+					this.sendFiles(e.target.files);
+				});
+				fileInput.initialized=true;
+			}
+			fileInput.click();
+		});
 	}
 	return this.element
 }
@@ -52,7 +63,6 @@ WebDropUser.prototype.sendFiles=function(files) {
 		console.debug('call send');
 		var uploader=new WebDropFileUpload(this.client, files[i], this.id);
 		uploader.send();
-
 	}
 }
 

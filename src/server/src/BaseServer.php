@@ -38,7 +38,7 @@ class BaseServer implements MessageComponentInterface {
         if($key === null) {
             return $this->clientsData[$id];
         }
-        
+
         return $this->clientsData[$id][$key];
     }
 

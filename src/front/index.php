@@ -1,14 +1,12 @@
 <?php
 
 if(isset($_GET['getServiceInfo'])) {
-	include(__DIR__.'/configuration.php');
 	header('Content-type: application/json');
 	echo json_encode(array(
-		'host'=> $host,
-		'port'=> $port,
-		'serviceName' => $serviceName
+		'host'=> 'wss.' . $_SERVER['HTTP_HOST'],
+		'port'=> 8443,
+		'serviceName'=> ''
 	));
-
 	exit();
 }
 ?>
@@ -18,11 +16,11 @@ if(isset($_GET['getServiceInfo'])) {
 	<title>Webdrop</title>
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0"/>
 	<link rel="stylesheet" href="assets/global.css"></link>
-
-
 </head>
 
 <body>
+
+<input type="file" id="fileInput" style="opacity:0" multiple/>
 
 <div class="background">
 	<div class="scanner"></div>
